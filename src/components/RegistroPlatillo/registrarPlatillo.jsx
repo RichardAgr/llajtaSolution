@@ -1,42 +1,53 @@
-import { Form, Input, Button, Breadcrumb, Upload, message,Space, Typography } from 'antd';
+import { Form, Input, Button, Breadcrumb, Upload, message,Typography, ConfigProvider } from 'antd';
 import {UploadOutlined } from '@ant-design/icons';
 import React, {useState} from 'react';
+import axios from 'axios';
+import './registrarPlatillo.css';
 
 const {Title}=Typography
 
 const { TextArea } = Input;
 function MyForm () {
-  const onFinish = (values) => {
+  <ConfigProvider
+    theme={{
+      token: {
+        // Seed Token
+        colorPrimary: '#00b96b',
+        borderRadius: 2,
+
+        // Alias Token
+        colorBgContainer: '#f6ffed',
+      },
+    }}
+  ></ConfigProvider>
+  const onFinish = async (values) => {
+    console.log('Finaliza el formulario')
     console.log(values);
-
-
-/// paso a back end
-const formData = new FormData(values);
-console.log('FormData', values);
-
-fetch('http://localhost:5000/registrarPlatillo', {
-  method: 'POST',
-  body: formData,
-})
-  .then((response) => response.json())
-  .then((data) => {
-
-    console.log(data.message); // You can replace this with any desired action
-    message.success(data.message); // Display a success message
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-    message.error('Error occurred while registering the platillo');
-  });
-
-
+    try {
+      const formData = new FormData(); 
+      formData.append('nombre', values.titulo); 
+      formData.append('descripcion', values.descripcion);
+      formData.append('imagen', values.imagen.fileList[0].originFileObj);
+      formData.append('video', values.video.fileList[0].originFileObj);
+      console.log('Realizando llamada');
+      const response = await axios.post('http://localhost:5000/registrarPlatillo', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
+      console.log('Llega la llamada');
+      console.log(response);
+      if (response.status===200) {
+        message.success('Platillo registrado correctamente');
+      } else {
+        message.error('Error al registrar el platillo');
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
 //PASO DE FRONT END A
-
-
-
-
 
 //Logia imagen y video
 const [fileUploaded, setFileUploaded] = useState(false);
@@ -74,20 +85,12 @@ const [fileUploaded, setFileUploaded] = useState(false);
 
   return (
     
-    <Form 
-      onFinish={onFinish}
-      encType="multipart/form-data"
-    >
-       <Title level={2}>Registrar Platillo</Title>
-      <Breadcrumb
-          style={{
-            margin: '30px 0',
-          }}
-        >
-    </Breadcrumb>
+    <Form onFinish={onFinish}>
+       <Title className="fuente-letra" level={2}>Registrar Platillo</Title>
+
+      
       <Form.Item
-        label={
-        <span>Título:<span style={{ color: 'red', marginLeft: '4px' }}></span></span>}
+        label={<span>Título:<span style={{ color: 'red', marginLeft: '4px' }}></span></span>}
         name="titulo"
         colon={false}
         rules={[{ required: true, message: 'Ingresa el título del platillo'},
@@ -119,7 +122,7 @@ const [fileUploaded, setFileUploaded] = useState(false);
         labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
         wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada  
       >
-         <Upload  {...verificar} maxCount={1} name="imagen">
+         <Upload  {...verificar} maxCount={1}>
             <Button style={buttonStyle} icon={<UploadOutlined />}>Subir Imagen</Button>
             {fileUploaded && <span style={{ marginLeft: '8px'  }}></span>}
             {!fileUploaded && <span style={{ marginLeft: '8px', opacity: 0.5  }}> No se ha seleccionado ningún archivo</span>}
@@ -129,7 +132,7 @@ const [fileUploaded, setFileUploaded] = useState(false);
       <Form.Item
         label={
         <span>Descripción:<span style={{ color: 'red', marginLeft: '4px' }}></span></span>}
-        name="descripcion"
+        name="descripción"
         colon={false}
         rules={[{ required: true, message: 'Ingrese una descripcion' },
         { max: 500, message: 'El título no puede tener más de 500 caracteres' },]}
@@ -160,19 +163,20 @@ const [fileUploaded, setFileUploaded] = useState(false);
         labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
         wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada
       >      
-      <Upload  {...verificar} maxCount={1} name="video">
+      <Upload  {...verificar} maxCount={1}>
             <Button style={buttonStyle} icon={<UploadOutlined />}>Subir Video  </Button>
             {fileUploaded && <span style={{ marginLeft: '8px' }}></span>}
-            {!fileUploaded && <span style={{ marginLeft: '8px', opacity: 0.5 }}>No se ha seeccionado ningún archivo</span>}
+            {!fileUploaded && <span style={{ marginLeft: '8px', opacity: 0.5 }}>No se ha seleccionado ningún archivo</span>}
           </Upload>
       </Form.Item>
       <Form.Item
-        wrapperCol={{ offset: 9, span: 6 }} // Offset para mover el botón
+        wrapperCol={{ offset: 7, span: 6 }} // Offset para mover el botón
+       
       >
-        <Button type="primary" htmlType="submit" style={{ marginRight: '20px' }}>
+        <Button type="primary"  htmlType="submit"  className='button' style={{ marginRight: '70px' }}>
           Registrar
         </Button>
-        <Button type="primary" htmlType="submit" style={{ marginLeft: '120px' }}>
+        <Button type="primary" htmlType="button"  className='button'>
           Cancelar
         </Button>
       </Form.Item>

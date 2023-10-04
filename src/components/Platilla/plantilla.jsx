@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Layout, Menu, theme } from 'antd';
-import MyForm from '../RegistroPlatillo/registrarPlatillo';
 import { HomeOutlined, UnorderedListOutlined } from '@ant-design/icons'; // Importa los íconos necesarios
 const { Header, Footer } = Layout;
 const { SubMenu } = Menu;
+import '../RegistroPlatillo/registrarPlatillo.css';
+import MyForm from '../RegistroPlatillo/registrarPlatillo';
 
 const App2 = () => {
   const [openSubMenu, setOpenSubMenu] = useState(false);
@@ -15,19 +16,13 @@ const App2 = () => {
 
   return (
     <Layout className="layout">
-      <Header
-        style={{
-          display: 'flow',
-          width: '100%',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <div className="demo-logo" />
+      <Header div className="header" >
+
         <Menu
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={['Platillos Tradicionales']}
+          className='menu'
         >
           {items1.map((item) => (
             <Menu.Item key={item}>
@@ -39,8 +34,8 @@ const App2 = () => {
                 key={item}
                 className={openSubMenu ? 'ant-menu-submenu-open' : ''}
               >
-                <Menu.Item key="1">Registrar Platillo</Menu.Item>
-                <Menu.Item key="2" defaultSelectedKeys={['Registrar Platillo']}>Mostrar Platillo</Menu.Item>
+                <Menu.Item key="1"defaultSelectedKeys={['Registrar Platillo']}>Registrar Platillo</Menu.Item>
+                <Menu.Item key="2">Mostrar Platillo</Menu.Item>
     
               </SubMenu>
               ):(
@@ -50,13 +45,10 @@ const App2 = () => {
           ))}
         </Menu>
       </Header>
-     {/*} <MyForm/> aqui se carga la parte de registrar platillo*/}
-      <Footer
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        {/*Copyright @ 2023 Llajta Solutions Todos los derechos reservados*/}
+{/*<MyForm/> crear otra ventana*/}
+  <MyForm/>
+      <Footer className='footer'>
+        Copyright @ 2023 Llajta Solutions Todos los derechos reservados
       </Footer>
     </Layout>
   );
