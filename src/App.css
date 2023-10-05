@@ -1,42 +1,66 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.fuente-letra {
+    font-family:sans-serif ;
   }
-  to {
-    transform: rotate(360deg);
+/*Color de fondo de la pagina*/
+body {
+    font-family: Arial, sans-serif; 
+    background-color: #fbdcc4; /* Color de fondo en formato hexadecimal */
+    padding: 0;
+    margin: 0;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+form {
+    background-color: #fbdcc4;
+    padding: 20px; 
   }
+  
+
+.menu {
+    background-color: #7D0633; /* Cambia esto al color deseado en formato hexadecimal */
+    color: rgb(255, 255, 255); /* Cambia el color del texto para que sea legible en el fondo elegido */
+    border: none; /* Elimina el borde del menú */
+    border-radius: 10; /* Elimina la esquina redondeada del menú */
+    margin: 0; /* Elimina el margen exterior del menú */
+    padding: 10; /* Elimina el relleno del menú */
+  }
+
+.header {
+    background-color: #7D0633; /* Cambia esto al color deseado en formato hexadecimal */
+    color: rgb(144, 32, 32); /* Cambia el color del texto para que sea legible en el fondo elegido */
+
+  }
+  
+  .footer {
+    font-family: Arial, sans-serif;
+    background-color: #31112c; /* Cambia esto al color deseado en formato hexadecimal */
+    color: rgb(255, 255, 255); /* Cambia el color del texto para que sea legible en el fondo elegido */
+    border: none; /* Elimina el borde del menú */
+    border-radius: 10; /* Elimina la esquina redondeada del menú */
+    margin: 0; /* Elimina el margen exterior del menú */
+    padding: 0; /* Elimina el relleno del menú */
+    text-align: center;
+    height: 30px;line-height: 30px;
+  }
+
+  .footeqqr{
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px; 
+    background-color: #31112C; 
+    border-top: 1px solid #ffffff;
+    text-align: center;
+
+    font-size: 14px; 
+    color: #fffdfd; 
+    line-height: 2px;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  background-color: #fbdcc4;
 }
