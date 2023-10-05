@@ -47,13 +47,23 @@ const App2 = () => {
             </Menu.Item>
           ))}
         </Menu>
+        <Table
+            className='tabla'
+            locale={cargandoTabla ? (
+              { emptyText: <Spin indicator={<LoadingOutlined style={{ color: '#132D46' }} />} tip="Cargando platillos registrados..." style={{ color: '#132D46' }} /> }
+            ) : (
+              { emptyText: 'No hay platillos registrados' })}
+            rowKey='id'
+            columns={columnas}
+            dataSource={datosTabla}
+            bordered={true}
+            pagination={{ pageSize: 4, pagination: true, position: ["bottomRight"] }}
+            size={'small'} />
+
       </Header>
       <Content className='content'>
-        <MyForm/>
+
       </Content>
-      <Footer className='footer'>
-        Copyright @ 2023 Llajta Solutions Todos los derechos reservados
-      </Footer>
     </Layout>
   );
 };

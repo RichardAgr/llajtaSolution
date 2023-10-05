@@ -6,6 +6,8 @@
 -- Tiempo de generación: 25-09-2023 a las 23:53:00
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
+CREATE DATABASE llajta_solutions; 
+USE llajta_solutions; 
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
