@@ -44,7 +44,7 @@ function MyForm() {
       } 
       const tam = 6*1024*1024; 
       if (file.size>tam) {
-        message.error('Limite excedido');        
+        setImageModalVisible(true);
       } else {
         setFileUploaded(true);
         message.success(`${file.name} subido correctamente.`);
@@ -71,7 +71,7 @@ function MyForm() {
       }
       const tam = 15*1024*1024; 
       if(file.size>tam) {
-        message.error('Limite excedido');        
+        setVideoModalVisible(true);
       } else {
         setFileUploaded(true);
         message.success(`${file.name} subido correctamente.`);
@@ -225,9 +225,6 @@ function MyForm() {
         visible={imageModalVisible}
         onCancel={() => setImageModalVisible(false)}
         footer={[
-          <Button key="ok" className='button' onClick={() => setImageModalVisible(false)}>
-            OK
-          </Button>,
         ]}
       >
         El archivo de imagen excede el límite de tamaño permitido (6MB).
@@ -238,9 +235,6 @@ function MyForm() {
         visible={videoModalVisible}
         onCancel={() => setVideoModalVisible(false)}
         footer={[
-          <Button key="ok" className='button' onClick={() => setVideoModalVisible(false)}>
-            OK
-          </Button>,
         ]}
       >
         El archivo de video excede el límite de tamaño permitido (15MB).
