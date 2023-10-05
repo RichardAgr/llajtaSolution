@@ -1,6 +1,3 @@
-
-//Se creó este componente para pruebas
-//import './AppHeader.css'
 import { useContext } from 'react';
 
 
@@ -10,8 +7,8 @@ export default function Footer(props){
     }
     
     return(
-        <div className='App-footer'>
-            <small>UMSS &copy; - Sistema creado por Team Digital Warriors - Todos los derechos reservados</small> {displayYear()}
-        </div>
+        <Footer className='footer'>
+        Copyright @ 2023 Llajta Solutions Todos los derechos reservados
+        </Footer>
     )
 }

@@ -3,8 +3,11 @@ import { Layout, Menu, theme } from 'antd';
 import { HomeOutlined, UnorderedListOutlined } from '@ant-design/icons'; // Importa los íconos necesarios
 const { Header, Footer } = Layout;
 const { SubMenu } = Menu;
-import '../RegistroPlatillo/registrarPlatillo.css';
+
 import MyForm from '../RegistroPlatillo/registrarPlatillo';
+
+import './plantilla.css'
+import { Content } from 'antd/es/layout/layout';
 
 const App2 = () => {
   const [openSubMenu, setOpenSubMenu] = useState(false);
@@ -45,8 +48,9 @@ const App2 = () => {
           ))}
         </Menu>
       </Header>
-{/*<MyForm/> crear otra ventana*/}
-  <MyForm/>
+      <Content className='content'>
+        <MyForm/>
+      </Content>
       <Footer className='footer'>
         Copyright @ 2023 Llajta Solutions Todos los derechos reservados
       </Footer>

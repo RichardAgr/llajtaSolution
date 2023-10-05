@@ -6,6 +6,8 @@
 body {
     font-family: Arial, sans-serif; 
     background-color: #fbdcc4; /* Color de fondo en formato hexadecimal */
+    padding: 0;
+    margin: 0;
   }
 form {
     background-color: #fbdcc4;
@@ -54,4 +56,11 @@ form {
     font-size: 14px; 
     color: #fffdfd; 
     line-height: 2px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  background-color: #fbdcc4;
 }

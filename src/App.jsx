@@ -2,14 +2,14 @@ import React from 'react';
 import './App.css';
 
 
-import Header from './components/UbicacionImagen/ubicacionImagen'
-import App2 from './components/Platilla/plantilla'
+import Header from './components/MenuNavegacion/ubicacionImagen'
+import App2 from './components/Plantilla/plantilla'
 
 function App() {
   return (
     <div className="App">
       <Header/>
-      <App2/>
+        <App2/>
     </div>
   );
 }

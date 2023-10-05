@@ -1,6 +1,7 @@
 import React from 'react';
 import { Breadcrumb} from 'antd';
 
+
 export const imgFormato = () => {
   const imagenStyle = {
     position: 'absolute',
