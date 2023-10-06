@@ -17,16 +17,12 @@ export const imgFormato = () => {
   return (
     <div>
     <img
-        src="/src/assets/logo.jpeg" 
+        src="/src/assets/logo.png" 
         alt="Mi Imagen"
+        width={120}
         style={imagenStyle}
     />
 
-    <img
-        src="/src/assets/banerr.jpeg" 
-        alt="Mi Imagen"
-        style={imagenStyle2}
-    />
     <Breadcrumb
           style={{
             margin: '60px 0',

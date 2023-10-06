@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Layout, Menu, theme } from 'antd';
 import { HomeOutlined, UnorderedListOutlined } from '@ant-design/icons'; // Importa los íconos necesarios
+
+import Routes from './Routes';
+
 const { Header, Footer } = Layout;
 const { SubMenu } = Menu;
 
-import MyForm from '../RegistroPlatillo/registrarPlatillo';
 
 import './plantilla.css'
 import { Content } from 'antd/es/layout/layout';
@@ -47,23 +49,13 @@ const App2 = () => {
             </Menu.Item>
           ))}
         </Menu>
-        <Table
-            className='tabla'
-            locale={cargandoTabla ? (
-              { emptyText: <Spin indicator={<LoadingOutlined style={{ color: '#132D46' }} />} tip="Cargando platillos registrados..." style={{ color: '#132D46' }} /> }
-            ) : (
-              { emptyText: 'No hay platillos registrados' })}
-            rowKey='id'
-            columns={columnas}
-            dataSource={datosTabla}
-            bordered={true}
-            pagination={{ pageSize: 4, pagination: true, position: ["bottomRight"] }}
-            size={'small'} />
-
       </Header>
       <Content className='content'>
-
+        <Routes/>
       </Content>
+      <Footer className='footer'>
+        Copyright @ 2023 Llajta Solutions Todos los derechos reservados
+      </Footer>
     </Layout>
   );
 };

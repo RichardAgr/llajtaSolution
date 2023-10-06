@@ -22,7 +22,7 @@ const upload = multer({
         }
     },
     limits: {
-        fieldSize: 15 * 1024 * 1024, // Limita el tamaño total de todos los archivos a 15 MB
+        fieldSize: 150 * 1024 * 1024, // Limita el tamaño total de todos los archivos a 15 MB
     },
 }).fields([
     { name: 'imagen', maxCount: 1 },

@@ -1,74 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <img class="imglogo" src="stylesheets\logo.jpeg">
-  <img class="imgbaner" src="stylesheets\banerr.jpeg">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Platillo</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="stylesheets/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostrar Platillo y Video</title>
 </head>
+<body>
+  <h1>Platillo</h1>
+  <div id="platillo-info">
+    <!-- Aquí se mostrará la información del platillo -->
+  </div>
 
-<body class="imagen-container">
-  <div class="header">
-    <div class="menu">
-        <div class="menu-item"></div>
-        <div class="menu-item"><i class="fas fa-home" ></i>  Inicio</div>
-        <div class="menu-item"><i class="fa-solid fa-list "></i> Platillos Tradicionales
-            <div class="vertical-menu">
-                <a href="#" class="active">Registrar Platillo</a>
-                <a href="#">Mostrar Platillo</a>
-            </div>
-        </div>
-    </div>
-</div>
-  
+  <h1>Video</h1>
+  <video id="video-player" controls autoplay>
+    <!-- El video se cargará aquí -->
+  </video>
 
-    <div class="container">
-        <h2>Registrar Platillo</h2>
-        <form action="/registrarPlatillo" method="POST" enctype="multipart/form-data">
-            <div class="input-container">
-            <label for="nombre">Título:*</label>
-            <input type="text"  autoComplete="off" id="nombre" name="nombre" placeholder="Ingrese el título del platillo" maxlength="50" required><br>
-            </div>
+  <!-- Aquí se mostrará la imagen del platillo -->
+  <img id="imagen-platillo" alt="Imagen del Platillo">
 
-            <div class="input-container">
-            <label for="imagen">Imagen:*</label>
-            <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png" required><br>
-            </div>
+  <script>
+    // Realiza un GET para obtener la información del platillo
+    fetch('/mostrarPlatillos/page/1')
+      .then(response => response.json())
+      .then(data => {
+        // Extrae el ID codificado del platillo
+        const id_codificado = data.respuesta.id; // Asegúrate de usar la propiedad correcta aquí
+        console.log(data.respuesta);
 
-            <div class="input-container">
-            <label for="descripcion">Descripción:*</label>
-            <textarea id="descripcion" name="descripcion" placeholder="Ingrese una descripción del platillo" rows="6" maxlength="100" required></textarea><br>
-            </div>
+        // Configura la información del platillo en la página
+        const platilloInfo = document.getElementById('platillo-info');
+        platilloInfo.innerHTML = `
+          <p>Nombre: ${data.respuesta.nombre}</p>
+          <p>Descripción: ${data.respuesta.descripcion}</p>
+        `;
 
-            <div class="input-container">
-            <label for="video">Video:*</label>
-            <input type="file" id="video" name="video" accept="video/mp4" required><br>
-            </div>
-            
-            <button type="submit">Registrar</button>
-            <button type="reset">Cancelar</button>
-        </form>
-        <div class="modal-background" id="modalBackground"></div>
+        // Configura la fuente de la imagen del platillo
+        const imagenPlatillo = document.getElementById('imagen-platillo');
+        imagenPlatillo.src = data.respuesta.imagen;
 
-        <!-- Modal de notificación -->
-        <div class="modal" id="notificationModal">
-            <div class="modal-content">
-                <div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
-                <p id="notificationMessage">Mensaje de notificación</p>
-            </div>
-        </div>
-    
-
-    </div>
-    <Footer class="aling"><br></br>
-      Copyright @ 2023 Llajta Solutions Todos los derechos reservados
-    </Footer>
-    <script src="./index.js"></script>
+        // Luego de que el primer fetch termine, realiza el segundo fetch
+        return fetch(`/stream/${id_codificado}`);
+      })
+      .then(response => {
+        // Configura la fuente del reproductor de video
+        const videoPlayer = document.getElementById('video-player');
+        videoPlayer.src = response.url;
+      })
+      .catch(error => console.error('Error al obtener el platillo o el video:', error));
+  </script>
 </body>
 </html>
