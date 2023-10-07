@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
 import swal from 'sweetalert';
+import {ModalConfirmation} from '../ModalConfirmation/ModalConfirmation'
 
 import './mostrarPlatillo.css';
 
@@ -21,6 +22,8 @@ function MostrarPlatillos() {
     axios.get(`http://localhost:5000/mostrarPlatillos/page/${id}`)
       .then((response) => {
         console.log(response.data.respuesta);
+        console.log("Identificador" + id);
+        console.log("A" + platilloData.identificador)
         const platillo = response.data.respuesta;
         setPlatilloData({
           nombre: platillo.nombre,
@@ -33,7 +36,7 @@ function MostrarPlatillos() {
         console.error('Error al obtener el platillo:', error);
       });
   }, [id]);
-  axios.get(`http://localhost:5000/stream/${id}`).then(
+  axios.get(`http://localhost:5000/stream/${platilloData.identificador}`).then(
     (response) => {
       video: response.url;
     }
@@ -87,13 +90,9 @@ function MostrarPlatillos() {
             {/* Agregar lógica de edición aquí */}
           </button>
           <br />
-          <button
-            className="delete-button"
-            type="danger"
-            onClick={alertaEliminarPlatillo}
-          >
+            <ModalConfirmation id={platilloData.identificador} nombre={platilloData.nombre}/>
             {/* Agregar lógica de eliminación aquí */}
-          </button>
+
         </div>
       </div>
     </div>

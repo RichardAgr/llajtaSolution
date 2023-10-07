@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import { Button, Modal, message, Space,notification, Tooltip, Popover } from 'antd';
 import {DeleteOutlined,  ExclamationCircleOutlined, CheckCircleOutlined, InfoCircleOutlined} from '@ant-design/icons'
 
-import './stileModalConfirmation.css'
 
-export const ModalConfirmation = () => {
+
+export const ModalConfirmation = ({id, nombre}) => {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('¿Esta seguro de eliminar el platillo tradicional?');
+    const [modalText, setModalText] = useState(`¿Esta seguro de eliminar el platillo ${nombre}?`);
     const [messageApi, contextHolder] = message.useMessage();
     const showModal = () => {
       setOpen(true);
     };
- 
+    
     const handleOk = async () => {
       setModalText('Eliminando platillo... ');
       setConfirmLoading(true);
       try {
         // Realizar la solicitud fetch aquí (reemplaza la URL con tu endpoint)
-        const response = await fetch(`http://localhost:5000/eliminarPlatillo/1`, {
+        const response = await fetch(`http://localhost:5000/eliminarPlatillo/${id}`, {
           method: 'DELETE',
         });
   
@@ -26,6 +26,7 @@ export const ModalConfirmation = () => {
           setOpen(false);
           setConfirmLoading(false);
           mostrarNotificacionExito();
+          window.location.reload();
         } else {
           mostrarNotificacionError("Error de conexion");
         }
