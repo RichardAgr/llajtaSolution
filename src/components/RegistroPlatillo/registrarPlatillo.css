@@ -75,4 +75,20 @@ form {
   right: 0;
 }
   
+.button-link {
+  background-color: #7D0633; /* Color de fondo del botón y el enlace */
+  color: #fff; /* Color del texto del botón y el enlace */
+  padding: 8px 16px; /* Espaciado interno del botón y el enlace */
+  text-decoration: none; /* Elimina la decoración de texto predeterminada del enlace */
+  margin: 10px;
+  line-height: 1;
+  border-radius: 0px;
+  cursor: pointer; /* Cambia el cursor al puntero al pasar el mouse */
+  font-weight: bold; /* Peso de la fuente en negrita para el botón y el enlace */
+}
+
+.button-link:hover {
+  background-color: #7D0633; 
+}
+
   

@@ -1,6 +1,7 @@
 import { Form, Input, Button, message, Typography, Upload, Modal } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './registrarPlatillo.css';
 
@@ -246,18 +247,18 @@ function MyForm() {
         footer={[
         ]}
       >
-        El archivo de video excede el límite de tamaño permitido (15MB).
+        El archivo de video excede el límite de tamaño permitido (150MB).
       </Modal>
       <Modal
-        title="¿Está seguro de cancelar?"
+        title="¿Está seguro de eliminar el registro?"
         visible={cancelModalVisible}
         onCancel={() => setCancelModalVisible(false)}
         footer={[
-          <Button key="ok" className='button' onClick={cancelOk}>
-            OK
-          </Button>,
-          <Button key="cancel" className='button' onClick={() => setCancelModalVisible(false)}>
-           Cancel
+          <Link to='/mostrar-platillo/page/1' key="cancel" className='button-link' onClick={() => setCancelModalVisible(false)}>
+           OK
+          </Link>,
+          <Button key="ok" className='button-link' onClick={() => setCancelModalVisible(false)}>
+          Cancelar
           </Button>,
         ]}
       >

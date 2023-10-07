@@ -30,25 +30,25 @@ const App2 = () => {
           defaultSelectedKeys={['Home']}
           className='menu'
         >
-  <Menu.Item key="Home">
-    <Link to="/">Home</Link> {/* Utiliza Link */}
-  </Menu.Item>
-  <SubMenu
-    title={
-      <span>
-        <UnorderedListOutlined /> Platillos Tradicionales
-      </span>
-    }
-    key="Platillos Tradicionales"
-    className={openSubMenu ? 'ant-menu-submenu-open' : ''}
-  >
-    <Menu.Item key="Registrar Platillo">
-      <Link to="/registrar-platillo">Registrar Platillo</Link> {/* Utiliza Link */}
-    </Menu.Item>
-    <Menu.Item key="Mostrar Platillo">
-      <Link to="/mostrar-platillo/page/1">Mostrar Platillo</Link> {/* Utiliza Link */}
-    </Menu.Item>
-  </SubMenu>
+          <Menu.Item key="Home">
+            <Link to="/">Home</Link> {/* Utiliza Link */}
+          </Menu.Item>
+          <SubMenu
+            title={
+              <span>
+                <UnorderedListOutlined /> Platillos Tradicionales
+              </span>
+            }
+            key="Platillos Tradicionales"
+            className={openSubMenu ? 'ant-menu-submenu-open' : ''}
+          >
+            <Menu.Item key="Registrar Platillo">
+              <Link to="/registrar-platillo">Registrar Platillo</Link> {/* Utiliza Link */}
+            </Menu.Item>
+            <Menu.Item key="Mostrar Platillo">
+              <Link to="/mostrar-platillo/page/1">Mostrar Platillo</Link> {/* Utiliza Link */}
+            </Menu.Item>
+          </SubMenu>
         </Menu>
       </Header>
       <Content className='content'>

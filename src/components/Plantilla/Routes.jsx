@@ -10,7 +10,7 @@ function Router() {
         <Routes>
             <Route exact path='/' element={<Home/>}/>
             <Route path='/registrar-platillo' element={<MyForm/>}/>
-            <Route path='/mostrar-platillo/page/:id' element={<Home/>}/>
+            <Route path='/mostrar-platillo/page/:id' element={<MostrarPlatillos/>}/>
         </Routes>
     );
 }
