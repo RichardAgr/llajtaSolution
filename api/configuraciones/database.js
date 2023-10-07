@@ -6,22 +6,22 @@ const mysql = require('mysql2/promise');
     database: 'bryrb8vptbobryfsboyq', 
     port: '3306'
 };*/
-/*
+
 const db_config = {
     host: 'localhost', 
     user: 'root', 
     password: '', 
     database: 'llajta_solutions', 
     port: 3306
-};*/
+};
 
-const db_config = {
+/*const db_config = {
     host:'localhost',
     user:'usuario_llajta_solutions', 
     password: '123456local',
     database: 'llajta_solutions',
     port: '3306',
-};
+};*/
 
 const pool = mysql.createPool(db_config);
 
