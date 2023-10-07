@@ -9,4 +9,7 @@ body {
     background-color: #FBDCC4;
     padding: 30px;
   }
+.menu-item-selected {
+  background-color: '#31112C';
+}
   

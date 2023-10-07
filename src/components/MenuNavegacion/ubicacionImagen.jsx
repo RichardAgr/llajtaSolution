@@ -15,7 +15,7 @@ export const imgFormato = () => {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor: '#F2A07B'}}>
     <img
         src="/src/assets/logo.png" 
         alt="Mi Imagen"
