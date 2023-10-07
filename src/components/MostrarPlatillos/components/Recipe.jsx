@@ -5,21 +5,9 @@ import swal from 'sweetalert';
 import './Recipe.css';
 import { Button } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { ModalConfirmation } from '../../ModalConfirmation/ModalConfirmation';
 
-const alerta= async () => {
-  swal({
-      title:"ELIMINAR PLATILLO",
-      text:"Esta seguro de ELIMINAR el PLATILLO",
-      icon:"warning",
-      buttons:["No","Si"]
-  }).then(respuesta=>{
-      if(respuesta){
-          swal({text:"El Platillo se elimino con exito",
-          icon:"success"          
-          })        
-      }
-  })   
-}
+
 const Recipe = () => {
     const {id} = useParams();
   const [platilloData, setPlatilloData] = useState({
@@ -100,9 +88,7 @@ const Recipe = () => {
               <Button type="primary" icon={<EditOutlined />} onClick={() => console.log('Editar')}>
              
               </Button>
-              <Button type="danger" icon={<DeleteOutlined />} onClick={alerta}>
-             
-              </Button>
+              <ModalConfirmation id={platilloData.identificador} nombre={platilloData.nombre}/>
             </div>
           </div>
         </div>
