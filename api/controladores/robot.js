@@ -34,6 +34,7 @@ exports.obtener_platillo = asyncHandler(async (req, res, next) => {
 		const [result] = await pool.query(sql, indexi); 
 
 		if (result.length == 0) {
+			console.log('No se encontro el platillo');
 			res.status(400).json({
 				message: 'No se encontro el platillo'
 			}); 

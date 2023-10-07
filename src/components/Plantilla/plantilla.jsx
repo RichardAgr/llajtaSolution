@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Layout, Menu, theme } from 'antd';
 import { HomeOutlined, UnorderedListOutlined } from '@ant-design/icons'; // Importa los íconos necesarios
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import Routes from './Routes';
 
@@ -18,6 +18,7 @@ const App2 = () => {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const location = useLocation();
   const items1 = ['Home', 'Platillos Tradicionales'];
 
   return (
@@ -27,11 +28,12 @@ const App2 = () => {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={['Home']}
           className='menu'
         >
-          <Menu.Item key="Home">
-            <Link to="/">Home</Link> {/* Utiliza Link */}
+          <Menu.Item key="Home" className={location.pathname === '/' ? 'selected-menu-item' : ''}>
+            <Link to="/">
+              <HomeOutlined/> Home
+            </Link> 
           </Menu.Item>
           <SubMenu
             title={
@@ -40,13 +42,17 @@ const App2 = () => {
               </span>
             }
             key="Platillos Tradicionales"
-            className={openSubMenu ? 'ant-menu-submenu-open' : ''}
+            className={`${location.pathname!='/'? 'selected-menu-item': ''} ${openSubMenu ? 'ant-menu-submenu-open' : ''}`}
           >
-            <Menu.Item key="Registrar Platillo">
-              <Link to="/registrar-platillo">Registrar Platillo</Link> {/* Utiliza Link */}
+            <Menu.Item key="Registrar Platillo" className={location.pathname === '/registrar-platillo' ? 'selected-menu-item' : ''}>
+              <Link to="/registrar-platillo" className='menu-icon'>
+                Registrar Platillo
+              </Link> 
             </Menu.Item>
-            <Menu.Item key="Mostrar Platillo">
-              <Link to="/mostrar-platillo/page/1">Mostrar Platillo</Link> {/* Utiliza Link */}
+            <Menu.Item key="Mostrar Platillo" className={location.pathname === '/mostrar-platillo/page/1' ? 'selected-menu-item' : ''}>
+              <Link to="/mostrar-platillo/page/1" className='menu-icon'>
+                Mostrar Platillo
+              </Link> 
             </Menu.Item>
           </SubMenu>
         </Menu>

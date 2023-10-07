@@ -225,7 +225,7 @@ function MyForm() {
         <Button type="primary" htmlType="submit" className='button' style={{ marginRight: '70px', backgroundColor: '#7D0633' }}>
           Registrar
         </Button>
-        <Button type="primary" htmlType="button" className='button' style={{backgroundColor: '#7D0633'}} onClick={showModal}>
+        <Button type="primary" htmlType="button" className='button' style={{backgroundColor: '#828282'}} onClick={showModal}>
           Cancelar
         </Button>
       </Form.Item>
