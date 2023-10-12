@@ -23,10 +23,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+//app.get('/media', express.static(__dirname+'/media/'));
+app.use('/media', express.static(path.join(__dirname, 'media/')));
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

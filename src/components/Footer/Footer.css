@@ -1,10 +1,48 @@
-.footer {
-    font-family: Arial, sans-serif;
-    background-color: #31112c; 
-    color: rgb(255, 255, 255);
-    border-radius: 10; 
-    margin: 0; 
-    padding: 0; 
-    text-align: center;
-    height: 30px;line-height: 30px;
-  }
+.footerA{
+    background-color: #31112c;
+    width:  100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*FOOTER RESPONSIVE*/
+@media (min-width:1025px){
+    .footerA{
+        height: 50px;
+    }
+    .textoPie{
+        font-size: 15px;
+    }
+    
+}
+
+@media (min-width:769px) and (max-width: 1025px){
+    .footerA{
+        height: 40px;
+    }
+    .textoPie{
+        font-size: 12px;
+    }
+    
+}
+
+@media (min-width:481px) and (max-width: 768px){
+    .footerA{
+        height: 30px;
+    }
+    .textoPie{
+        font-size: 10px;
+    }
+   
+}
+
+@media (max-width:480px){
+    .footerA{
+        height: 20px;
+    }
+    .textoPie{
+        font-size: 8px;
+    }
+}

@@ -1,14 +1,11 @@
-import { useContext } from 'react';
+import "./Footer.css";
 
-
-export default function Footer(props){
-    function displayYear() {
-        return new Date().getFullYear()
-    }
-    
+const piePagina = () => {
     return(
-        <Footer className='footer'>
-        Copyright @ 2023 Llajta Solutions Todos los derechos reservados
-        </Footer>
-    )
+         <div class = "footerA">
+        <p class = "textoPie">Copyright @ 2023 Llajta Solutions Todos los derechos reservados</p>
+    </div>
+    );
 }
+
+export default piePagina;

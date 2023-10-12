@@ -2,10 +2,9 @@
 .fuente-letra {
     font-family:sans-serif ;
   }
-/*Color de fondo de la pagina*/
 body {
     font-family: Arial, sans-serif; 
-    background-color: #fbdcc4; /* Color de fondo en formato hexadecimal */
+    background-color: #fbdcc4; 
     padding: 0;
     margin: 0;
   }
@@ -16,28 +15,28 @@ form {
   
 
 .menu {
-    background-color: #7D0633; /* Cambia esto al color deseado en formato hexadecimal */
-    color: rgb(255, 255, 255); /* Cambia el color del texto para que sea legible en el fondo elegido */
-    border: none; /* Elimina el borde del menú */
-    border-radius: 10; /* Elimina la esquina redondeada del menú */
-    margin: 0; /* Elimina el margen exterior del menú */
-    padding: 10; /* Elimina el relleno del menú */
+    background-color: #7D0633; 
+    color: rgb(255, 255, 255); 
+    border: none; 
+    border-radius: 10; 
+    margin: 0; 
+    padding: 10; 
   }
 
 .header {
-    background-color: #7D0633; /* Cambia esto al color deseado en formato hexadecimal */
-    color: rgb(144, 32, 32); /* Cambia el color del texto para que sea legible en el fondo elegido */
+    background-color: #7D0633; 
+    color: rgb(144, 32, 32);   
 
   }
   
   .footer {
     font-family: Arial, sans-serif;
-    background-color: #31112c; /* Cambia esto al color deseado en formato hexadecimal */
-    color: rgb(255, 255, 255); /* Cambia el color del texto para que sea legible en el fondo elegido */
-    border: none; /* Elimina el borde del menú */
-    border-radius: 10; /* Elimina la esquina redondeada del menú */
-    margin: 0; /* Elimina el margen exterior del menú */
-    padding: 0; /* Elimina el relleno del menú */
+    background-color: #31112c; 
+    color: rgb(255, 255, 255); 
+    border: none; 
+    border-radius: 10; 
+    margin: 0; 
+    padding: 0; 
     text-align: center;
     height: 30px;line-height: 30px;
   }

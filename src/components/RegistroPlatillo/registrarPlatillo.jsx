@@ -92,37 +92,45 @@ function MyForm() {
     height: '30px', // Tamaño en píxeles
   };
 
-  const onFinish = async (values) => {
-    console.log('Finaliza el formulario');
-    console.log(values);
-    try {
-      const formData = new FormData();
-      formData.append('nombre', values.titulo);
-      formData.append('descripcion', values.descripcion);
-      formData.append('imagen', values.imagen.fileList[0].originFileObj);
-      formData.append('video', values.video.fileList[0].originFileObj);
-      console.log('Realizando llamada');
-      const response = await axios.post('http://localhost:5000/registrarPlatillo', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('Llega la llamada');
-      console.log(response);
-      if (response.status === 200) {
-        message.success('Platillo registrado correctamente');
-      } else {
-        message.error('Error al registrar el platillo');
-      }
-    } catch (err) {
-      message.error('Error con el registro');
-      console.log(err);
+const onFinish = async (values) => {
+  console.log('Finaliza el formulario');
+  console.log(values);
+  try {
+    const formData = new FormData();
+    formData.append('nombre', values.titulo);
+    formData.append('descripcion', values.descripcion);
+
+    // Obtén los archivos de imagen y video
+    const imagenFile = values.imagen.file;
+    const videoFile = values.video.file;
+
+    // Agrega los archivos al FormData con su nombre y tipo
+    formData.append('imagen', new Blob([imagenFile], { type: imagenFile.type }), imagenFile.name);
+    formData.append('video', new Blob([videoFile], { type: videoFile.type }), videoFile.name);
+
+    console.log('Realizando llamada');
+    const response = await axios.post('http://localhost:5000/registrarPlatillo', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    console.log('Llega la llamada');
+    console.log(response);
+    if (response.status === 200) {
+      message.success('Platillo registrado correctamente');
+    } else {
+      message.error('Error al registrar el platillo');
     }
-  };
+  } catch (err) {
+    message.error('Error con el registro');
+    console.log(err);
+  }
+};
+
 
   return (
     <Form onFinish={onFinish}>
-      <Title className="fuente-letra" level={2}>Registrar Platillo</Title>
+    <div className="titulo-formato">Registrar Platillo</div  >
 
       <Form.Item
         label={

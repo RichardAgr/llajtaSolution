@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './components/Home';
 import SliderComponent from './components/SliderComponent';
+import './components/Slider.css';
 
 import './mostrarPlatillo.css';
 

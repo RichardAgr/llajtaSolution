@@ -14,6 +14,5 @@ router.get('/mostrarPlatillos/page/:id', controlador.obtener_platillo);
 router.post('/registrarPlatillo', upload, controlador.insertar_platillo); 
 router.put('/modificarPlatillo/:id', upload, controlador.modificar_platillo); 
 router.delete('/eliminarPlatillo/:id', controlador.eliminar_platillo); 
-router.get('/stream/:id', controlador.stream_video);
 
 module.exports = router;

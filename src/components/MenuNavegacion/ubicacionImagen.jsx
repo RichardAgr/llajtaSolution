@@ -10,17 +10,26 @@ export const imgFormato = () => {
   };
   const imagenStyle2 = {
     position: 'absolute',
-    top: '0px', 
-    left: '500px', 
+    top: '0px',
+    left: '50%', 
+    transform: 'translateX(-50%)', 
+    
   };
+  
 
   return (
     <div style={{backgroundColor: '#F2A07B'}}>
     <img
         src="/src/assets/logo.png" 
-        alt="Mi Imagen"
+        alt="Logo de la aplicacion"
         width={120}
         style={imagenStyle}
+    />
+    <img
+      src="/src/assets/banner.jpeg" 
+      alt="Banner de la aplicacion"
+      height={120}
+      style={imagenStyle2}
     />
 
     <Breadcrumb
