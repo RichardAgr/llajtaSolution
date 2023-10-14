@@ -1,6 +1,5 @@
 const mysql = require('mysql2/promise'); 
 /*
-*/
 const db_config = {
     host: 'bnsuv6worjxtfif7kgbt-mysql.services.clever-cloud.com', 
     user: 'u3rqowwvypxukc3c', 
@@ -8,6 +7,7 @@ const db_config = {
     database: 'bnsuv6worjxtfif7kgbt', 
     port: '3306'
 };
+*/
 /*
 const db_config = {
     host: 'localhost', 
@@ -18,6 +18,7 @@ const db_config = {
 };
 */
 /*
+*/
 const db_config = {
     host:'localhost',
     user:'usuario_llajta_solutions', 
@@ -25,7 +26,6 @@ const db_config = {
     database: 'llajta_solutions',
     port: '3306',
 };
-*/
 
 const pool = mysql.createPool(db_config);
 

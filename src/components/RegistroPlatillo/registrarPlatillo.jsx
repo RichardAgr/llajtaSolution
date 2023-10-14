@@ -132,12 +132,9 @@ const onFinish = async (values) => {
     <Form onFinish={onFinish}>
     <div className="titulo-formato">Registrar Platillo</div  >
 
-      <Form.Item
-        label={
-          <span style={{display: 'inline-block', textAlign: 'left'}} className='label_form'>
-            <span>Título:</span>
-            <span style={{ color: 'red', marginLeft: '4px', visibility: 'hidden' }}></span>
-            </span>
+      <Form.Item className='componente-limite'
+        label={ 
+            <span className='item-txt'>Título:</span>
         }
         name="titulo"
         colon={false}
@@ -147,8 +144,8 @@ const onFinish = async (values) => {
           { min: 6, message: 'El título debe tener al menos 6 caracteres' },
           { pattern: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s]*$/, message: 'Solo caracteres alfanuméricos son permitidos en el título' },
         ]}
-        labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
-        wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada
+        labelCol={{ span: 6 }} // Configura el ancho de la etiqueta
+        wrapperCol={{ span: 16 }} // Configura el ancho del campo de entrada
       >
         <div style={{ position: 'relative' }}>
           <Input
@@ -163,29 +160,26 @@ const onFinish = async (values) => {
         </div>
       </Form.Item>
 
-      <Form.Item
+      <Form.Item className='componente-limite'
         label={
-          <span className='label_form' onClick={(e)=>e.preventDefault()}>
-            <span>Imagen:</span>
-            <span style={{ color: 'red', marginLeft: '4px' }}></span>
-          </span>
+            <span className='item-txt' onClick={(e)=>{e.preventDefault()}}>Imagen:</span>
         }
         name="imagen"
         colon={false}
         rules={[{ required: true, message: 'No se ha subido ninguna imagen' }]}
-        labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
-        wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada
+        labelCol={{ span: 6 }} // Configura el ancho de la etiqueta
+        wrapperCol={{ span: 24 }} // Configura el ancho del campo de entrada
       >
         <Upload {...verificarImagen} maxCount={1}>
-          <Button style={buttonStyle} icon={<UploadOutlined />}>Subir Imagen</Button>
-          {imageUploaded && <span style={{ marginLeft: '8px' }}></span>}
-          {!imageUploaded && <span style={{ marginLeft: '8px', opacity: 0.5 }}> No se ha seleccionado ningún archivo</span>}
+          <Button style={buttonStyle} icon={<UploadOutlined />} className='sms'>Subir Imagen</Button>
+          {imageUploaded }
+          {!imageUploaded && <span className='mensaje-transparenteI'> No se ha seleccionado ningún archivo</span>}
         </Upload>
       </Form.Item>
 
-      <Form.Item
+      <Form.Item className='componente-limite'
         label={
-          <span>Descripción:<span style={{ color: 'red', marginLeft: '4px'}}></span></span>}
+          <span className='item-txt'>Descripción:</span>}
         name="descripcion"
         colon={false}
         rules={[
@@ -193,8 +187,8 @@ const onFinish = async (values) => {
           { max: 500, message: 'La descripción no puede tener más de 500 caracteres' },
           { min: 20, message: 'La descripción debe tener al menos 20 caracteres' },
         ]}
-        labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
-        wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada
+        labelCol={{ span: 6 }} // Configura el ancho de la etiqueta
+        wrapperCol={{ span: 16 }} // Configura el ancho del campo de entrada
       >
         <div style={{ position: 'relative' }}>
           <Input.TextArea
@@ -211,26 +205,28 @@ const onFinish = async (values) => {
         </div>
       </Form.Item>
 
-      <Form.Item
+      <Form.Item className='componente-limite'
         label={
-          <span onClick={(e)=>{e.preventDefault()}}>Video:<span style={{ color: 'red', marginLeft: '4px' }}></span></span>}
+          <span className='item-txt' onClick={(e)=>{e.preventDefault()}}>Video:</span>}
         name="video"
         colon={false}
         rules={[{ required: true, message: 'No se ha subido ningun video' }]}
-        labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
-        wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada
+        labelCol={{ span: 6 }} // Configura el ancho de la etiqueta
+        wrapperCol={{ span: 24 }} // Configura el ancho del campo de entrada
       >
         <Upload {...verificarVideo} maxCount={1}>
-          <Button style={buttonStyle} icon={<UploadOutlined />}>Subir Video</Button>
-          {videoUploaded && <span style={{ marginLeft: '8px' }}></span>}
-          {!videoUploaded && <span style={{ marginLeft: '8px', opacity: 0.5 }}>No se ha seleccionado ningún video</span>}
+          <Button style={buttonStyle} icon={<UploadOutlined /> }className='sms'>Subir Video</Button>
+          {videoUploaded}
+          {!videoUploaded && <span className='mensaje-transparenteV'>No se ha seleccionado ningún video</span>}
         </Upload>
       </Form.Item>
 
-      <Form.Item
-        wrapperCol={{ offset: 7, span: 6 }} // Offset para mover el botón
+      <Form.Item className='componente-limite'
+        label={<span></span>}
+        labelCol={{span: 6}}
+        wrapperCol={{ span: 20 }} // Offset para mover el botón
       >
-        <Button type="primary" htmlType="submit" className='button' style={{ marginRight: '70px', backgroundColor: '#7D0633' }}>
+        <Button type="primary" htmlType="submit" className='button' style={{ marginRight: '20%', backgroundColor: '#7D0633' }}>
           Registrar
         </Button>
         <Button type="primary" htmlType="button" className='button' style={{backgroundColor: '#828282'}} onClick={showModal}>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Recipe from './Recipe';
+import './Recipe.css';
 
 const Home = () => {
   const [showRecipe, setShowRecipe] = useState(false);
@@ -10,7 +11,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Platos Tradicionales Registrados</h1>
+      <h1 className='formato-titulo'>Platos Tradicionales Registrados</h1>
       <Recipe/>
     </div>
     

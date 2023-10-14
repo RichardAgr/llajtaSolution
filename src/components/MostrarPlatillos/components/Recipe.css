@@ -1,5 +1,5 @@
-.recipe-container {
-  max-width: 800px;
+.reciForma {
+  width: 90%;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -7,11 +7,11 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.recipe-title {
-  text-align: center;
+.formato-titulo{
   font-size: 24px;
-  margin-top: 0;
-  padding-bottom: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: center;
 }
 
 .recipe-content {
@@ -47,7 +47,7 @@
 
 .recipe-buttons {
   position: relative;
-  top: 100px;
+  top: 30px;
   margin-left: 20px;
 }
 
@@ -71,7 +71,7 @@
 }
 
 /*RESPONSIVE*/
-@media (min-width: 320px) and (max-width: 612px) {
+@media (min-width: 320px) and (max-width: 526px) {
 
   .recipe-image {
     margin-left: 35%;
@@ -80,7 +80,7 @@
 
   .recipe-buttons {
     margin-left: 60%;
-    top: 30%;
+    margin-right: 10%;
   }
 
   .formato-titulo {
@@ -91,3 +91,19 @@
     font-size: 10px;
   }
 }
+
+@media (min-width: 526px) and (max-width: 1771px) {
+  .formato-titulo{
+    font-size: 24px;
+  }
+  .recipe-video{
+    margin-left: 2%;
+    width: 95%;
+  }
+}
+
+@media (min-width: 1611px){
+
+
+}
+

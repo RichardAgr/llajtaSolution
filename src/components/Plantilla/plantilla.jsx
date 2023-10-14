@@ -29,13 +29,13 @@ const App2 = () => {
           theme="dark"
           mode="horizontal"
           className='menu'
-        >
+        >{/*
           <Menu.Item key="Home" className={location.pathname === '/' ? 'selected-menu-item' : ''}>
             <Link to="/">
               <HomeOutlined/> Home
             </Link> 
           </Menu.Item>
-          <SubMenu
+          */}<SubMenu
             title={
               <span>
                 <UnorderedListOutlined /> Platillos Tradicionales
@@ -60,9 +60,6 @@ const App2 = () => {
       <Content className='content'>
         <Routes/>
       </Content>
-      <Footer className='footer'>
-        Copyright @ 2023 Llajta Solutions Todos los derechos reservados
-      </Footer>
     </Layout>
   );
 };

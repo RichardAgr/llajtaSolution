@@ -4,7 +4,7 @@
 }
 
 .submenu-platillos {
-  background-color: #31112C !important;
+  background-color: #173111 !important;
   color: #fff !important;
 }
 
@@ -22,4 +22,27 @@ body {
   flex: 1;
   background-color: #FBDCC4;
   padding: 30px;
+}
+
+
+
+
+/*PARTE RESPONSIVE*/
+@media (min-width: 320px) and (max-width: 481px){
+  .menu {
+    font-size: 10px;
+    margin-left: -30px;
+    height: 40px;
+   
+  }
+
+  .header {
+      height: 40px;
+  }
+
+  .menu-item{
+      line-height: 40px;
+      font-size: 10px;
+  }
+
 }
