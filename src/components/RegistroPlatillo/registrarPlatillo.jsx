@@ -1,14 +1,17 @@
 import { Form, Input, Button, message, Typography, Upload, Modal } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './registrarPlatillo.css';
+import './registrarPlatillo.css'
 
 const { Title } = Typography;
 
 const { TextArea } = Input;
+
 function MyForm() {
-  const [fileUploaded, setFileUploaded] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState(false);
+  const [videoUploaded, setVideoUploaded] = useState(false);
   const [text, setText] = useState('');
   const [text2, setText2] = useState('');
   const [imageModalVisible, setImageModalVisible] = useState(false);
@@ -37,16 +40,16 @@ function MyForm() {
     beforeUpload: (file) => {
 
       let extension = file.name.split('.');
-      extension = extension[extension.length-1].toLowerCase();
-      if (extension!='jpeg'&&extension!='jpg'&&extension!='png') {
+      extension = extension[extension.length - 1].toLowerCase();
+      if (extension != 'jpeg' && extension != 'jpg' && extension != 'png') {
         message.error('Solo se permite archivos jpg y png.');
         return true;
-      } 
-      const tam = 6*1024*1024; 
-      if (file.size>tam) {
+      }
+      const tam = 6 * 1024 * 1024;
+      if (file.size > tam) {
         setImageModalVisible(true);
       } else {
-        setFileUploaded(true);
+        setImageUploaded(true);
         message.success(`${file.name} subido correctamente.`);
         return false;
       }
@@ -54,7 +57,7 @@ function MyForm() {
     },
     onRemove: () => {
       // Lógica para manejar la eliminación de la imagen
-      setFileUploaded(false);
+      setImageUploaded(false);
       message.warning('Imagen eliminada.');
     },
   };
@@ -62,26 +65,25 @@ function MyForm() {
   const verificarVideo = {
     beforeUpload: (file) => {
       let extension = file.name.split('.');
-      extension = extension[extension.length-1].toLowerCase();
-      console.log(extension);
-      console.log(extension=='mp4');
-      if (extension!='mp4') {
-        message.error('Solo permite archivos mp4'); 
+      extension = extension[extension.length - 1].toLowerCase();
+      if (extension != 'mp4') {
+        message.error('Solo permite archivos mp4');
         return true;
       }
-      const tam = 15*1024*1024; 
-      if(file.size>tam) {
+      const tam = 150 * 1024 * 1024;
+      if (file.size > tam) {
         setVideoModalVisible(true);
       } else {
-        setFileUploaded(true);
+        setVideoUploaded(true);
         message.success(`${file.name} subido correctamente.`);
         return false;
       }
       return true;
     },
     onRemove: () => {
+
       // Lógica para manejar la eliminación del video
-      setFileUploaded(false);
+      setVideoUploaded(false);
       message.warning('Video eliminado.');
     },
   };
@@ -121,20 +123,21 @@ function MyForm() {
 
   return (
     <Form onFinish={onFinish}>
-      <Title className="fuente-letra" level={2}>Registrar Platillo</Title>
+      {/* <Title className="fuentes">Registrar Platillo</Title> No es eficiente Title esta definido como variable*/}
+      <div className="titulo-formato">Registrar Platillo</div  >
 
-      <Form.Item
-        label={<span>Título:<span style={{ color: 'red', marginLeft: '4px' }}></span></span>}
+      <Form.Item className='componente-limite'
+        label={<span className="item-txt">Título:</span>}
         name="titulo"
         colon={false}
         rules={[
           { required: true, message: 'Ingresa el título del platillo' },
           { max: 50, message: 'El título no puede tener más de 50 caracteres' },
           { min: 6, message: 'El título debe tener al menos 6 caracteres' },
-          { pattern: /^[a-zA-Z0-9\s]*$/, message: 'Solo caracteres alfanuméricos son permitidos en el título' },
+          { pattern: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s]*$/, message: 'Solo caracteres alfanuméricos son permitidos en el título' },
         ]}
-        labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
-        wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada
+        labelCol={{ span: 6 }} // Configura el ancho de la etiqueta
+        wrapperCol={{ span: 16 }} // Configura el ancho del campo de entrada
       >
         <div style={{ position: 'relative' }}>
           <Input
@@ -149,25 +152,29 @@ function MyForm() {
         </div>
       </Form.Item>
 
-      <Form.Item
+
+      <Form.Item className='componente-limite'
         label={
-          <span>Imagen:<span style={{ color: 'red', marginLeft: '4px' }}></span></span>}
+          <span className="item-txt">Imagen:</span>
+
+        }
         name="imagen"
         colon={false}
         rules={[{ required: true, message: 'No se ha subido ninguna imagen' }]}
-        labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
-        wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada
+        labelCol={{ span: 6 }} // Configura el ancho de la etiqueta
+        wrapperCol={{ span: 24 }} // Configura el ancho del campo de entrada
       >
         <Upload {...verificarImagen} maxCount={1}>
-          <Button style={buttonStyle} icon={<UploadOutlined />}>Subir Imagen</Button>
-          {fileUploaded && <span style={{ marginLeft: '8px' }}></span>}
-          {!fileUploaded && <span style={{ marginLeft: '8px', opacity: 0.5 }}> No se ha seleccionado ningún archivo</span>}
+          <Button style={buttonStyle} icon={<UploadOutlined />} className='sms'>Subir Imagen</Button>
+          {imageUploaded}
+          {!imageUploaded && <span className='mensaje-transparenteI'> No se ha seleccionado ningún archivo</span>}
         </Upload>
       </Form.Item>
 
-      <Form.Item
+
+      <Form.Item className='componente-limite'
         label={
-          <span>Descripción:<span style={{ color: 'red', marginLeft: '4px' }}></span></span>}
+          <span className="item-txt">Descripción:</span>}
         name="descripcion"
         colon={false}
         rules={[
@@ -175,8 +182,8 @@ function MyForm() {
           { max: 500, message: 'La descripción no puede tener más de 500 caracteres' },
           { min: 20, message: 'La descripción debe tener al menos 20 caracteres' },
         ]}
-        labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
-        wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada
+        labelCol={{ span: 6 }} // Configura el ancho de la etiqueta
+        wrapperCol={{ span: 16 }} // Configura el ancho del campo de entrada
       >
         <div style={{ position: 'relative' }}>
           <Input.TextArea
@@ -185,7 +192,7 @@ function MyForm() {
             autoSize={{ minRows: 3, maxRows: 6 }}
             onChange={handleTextChange2}
             value={text2}
-            //maxLength={500} // Limitar a 500 caracteres
+          //maxLength={500} // Limitar a 500 caracteres
           />
           <div style={{ position: 'absolute', top: 0, right: 0, padding: '8px', color: 'gray' }}>
             {text2.length} / 500
@@ -193,26 +200,30 @@ function MyForm() {
         </div>
       </Form.Item>
 
-      <Form.Item
+
+      <Form.Item className='componente-limite'
         label={
-          <span>Video:<span style={{ color: 'red', marginLeft: '4px' }}></span></span>}
+          <span className="item-txt" >Video:</span>}
         name="video"
         colon={false}
         rules={[{ required: true, message: 'No se ha subido ningun video' }]}
-        labelCol={{ span: 7 }} // Configura el ancho de la etiqueta
-        wrapperCol={{ span: 10 }} // Configura el ancho del campo de entrada
+        labelCol={{ span: 6 }} // Configura el ancho de la etiqueta
+        wrapperCol={{ span: 24 }} // Configura el ancho del campo de entrada
       >
         <Upload {...verificarVideo} maxCount={1}>
-          <Button style={buttonStyle} icon={<UploadOutlined />}>Subir Video</Button>
-          {fileUploaded && <span style={{ marginLeft: '8px' }}></span>}
-          {!fileUploaded && <span style={{ marginLeft: '8px', opacity: 0.5 }}>No se ha seleccionado ningún video</span>}
+          <Button style={buttonStyle} icon={<UploadOutlined />} className='sms'>Subir Video</Button>
+          {videoUploaded && <span style={{ marginLeft: '8px' }}></span>}
+          {!videoUploaded && <span className='mensaje-transparenteV' >No se ha seleccionado ningún video</span>}
         </Upload>
       </Form.Item>
 
-      <Form.Item
-        wrapperCol={{ offset: 7, span: 6 }} // Offset para mover el botón
+
+      <Form.Item className='componente-limite'
+        label={<span></span>}
+        labelCol={{ span: 6 }} // Configura el ancho de la etiqueta
+        wrapperCol={{ span: 20 }} // Configura el ancho del campo de entrada
       >
-        <Button type="primary" htmlType="submit" className='button' style={{ marginRight: '70px' }}>
+        <Button type="primary" htmlType="submit" className='button' style={{ marginRight: '20%', backgroundColor: '#7D0633' }}>
           Registrar
         </Button>
         <Button type="primary" htmlType="button" className='button' onClick={showModal}>
@@ -237,25 +248,25 @@ function MyForm() {
         footer={[
         ]}
       >
-        El archivo de video excede el límite de tamaño permitido (15MB).
+        El archivo de video excede el límite de tamaño permitido (150MB).
       </Modal>
       <Modal
-        title="¿Está seguro de cancelar?"
+        title="¿Está seguro de eliminar el registro?"
         visible={cancelModalVisible}
         onCancel={() => setCancelModalVisible(false)}
         footer={[
-          <Button key="ok" className='button' onClick={cancelOk}>
+          <Link to='/mostrar-platillo/page/1' key="cancel" className='button-link' onClick={() => setCancelModalVisible(false)}>
             OK
-          </Button>,
-          <Button key="cancel" className='button' onClick={() => setCancelModalVisible(false)}>
-           Cancel
+          </Link>,
+          <Button key="ok" className='button-link' onClick={() => setCancelModalVisible(false)}>
+            Cancelar
           </Button>,
         ]}
       >
         Al cancelar, se perdera toda la informacion que no se haya registrado.
       </Modal>
     </Form>
-    
+
   );
 }
 
