@@ -109,7 +109,7 @@ const onFinish = async (values) => {
     formData.append('video', new Blob([videoFile], { type: videoFile.type }), videoFile.name);
 
     console.log('Realizando llamada');
-    const response = await axios.post('http://localhost:5000/registrarPlatillo', formData, {
+    const response = await axios.post('http://18.116.106.247:3000/registrarPlatillo', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

@@ -11,7 +11,7 @@ import {ModalConfirmation} from '../../ModalConfirmation/ModalConfirmation';
 import {Img} from 'react-image';
 
 
-const uri = 'http://localhost:5000/media/';
+const uri = 'http://18.116.106.247:3000/media/';
 
 
 const Recipe = () => {
@@ -26,8 +26,8 @@ const Recipe = () => {
   const [platillos, setPlatillos] = useState([]);
 
   useEffect(() => {
-    console.log('realizando llamada');
-    axios.get(`http://localhost:5000/mostrarPlatillos/page/${id}`)
+    console.log('realizando llamada de la receta <:v');
+    axios.get(`http://18.116.106.247:3000/mostrarPlatillos/page/1`)
       .then((response) => {
         console.log(response.data.respuesta);
         const platillo = response.data.respuesta;
@@ -40,6 +40,7 @@ const Recipe = () => {
         });
       })
       .catch((error) => {
+        console.log('Algun problema muy malevolo me hicieron:v')
         console.error('Error al obtener el platillo:', error);
       });
   }, [id]);
